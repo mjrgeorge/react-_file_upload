@@ -17,9 +17,9 @@ const FileUpload = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
+    console.log('file :>> ', file);
     const formData = new FormData();
     formData.append('file', file);
-
     try {
       const res = await axios.post('/upload', formData, {
         headers: {
@@ -33,7 +33,7 @@ const FileUpload = () => {
           );
         }
       });
-      
+
       // Clear percentage
       setTimeout(() => setUploadPercentage(0), 10000);
 
@@ -54,7 +54,7 @@ const FileUpload = () => {
 
   return (
     <Fragment>
-      {/* {message ? <Message msg={message} /> : null} */}
+      {message ? <Message msg={message} /> : null}
       <form onSubmit={onSubmit}>
         <div className='custom-file mb-4'>
           <input
@@ -68,7 +68,7 @@ const FileUpload = () => {
           </label>
         </div>
 
-        {/* <Progress percentage={uploadPercentage} /> */}
+        <Progress percentage={uploadPercentage} />
 
         <input
           type='submit'
